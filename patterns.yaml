@@ -1,0 +1,43 @@
+## Definition of string patterns. Components are inside brackets, e.g. {component}
+## Components "id" and "index" are matched with "d+" (INT). All else, "w+" (any character)
+## REGEX Escapable characters like: . [ ] etc... need to be replaced on the loading function
+## Order matters. A D+ gets matched on W+, e.g. "Ent:Attribute" matches "Ent:Id"
+## Primitive values can also be REFERENCES to other entities
+
+patterns:
+  ## FLATTENED OBJECT-KEY PATTERN
+  - pattern: "{entity}:{id}:{property}[{index}].{aggregate_property}"
+    label: "ArrProp"
+    description: "Flattened: Aggregate Array Property"
+    example: "User:101:watchedMovies[].stars -> Primitive"
+
+  - pattern: "{entity}:{id}:{property}[{index}]"
+    label: "Arr"
+    description: "Flattened: Aggregate Array"
+    example: "User:101:watchedMovies[] -> Hash,JSON(props) | User:101:favoriteMovies[] -> REF, 'value': (List, Set, Zset, Primitive)"
+
+  - pattern: "{entity}:{id}:{property}.{aggregate_property}"
+    label: "AggProp"
+    description: "Flattened: Aggregate Property"
+    example: "User:101:address.city -> Primitive"
+
+  - pattern: "{entity}:{id}:{property}"
+    label: "Prop"
+    description: "Flattened: Property | Aggregate Array | Aggregate"
+    example: "User:101:name -> Primitive | User:101:favoriteMovies -> 'value': List, Set, Zset | User:101:address -> Hash,JSON(props)"
+
+  - pattern: "{entity}:{id}"
+    label: "Ent"
+    description: "Flattened: Entity ID"
+    example: "User:101 -> Hash,JSON(props)"
+
+  ## REDIS SAMPLE
+  - pattern: "{entity}:{property}"
+    label: "Prop"
+    description: "Redis Sample: Aggregate Array"
+    example: "sample_jobQueue:waitingList -> List | Zset"
+
+  - pattern: "{entity}:{property}:{id}"
+    label: "Prop"
+    description: "Redis Sample: Aggregate Array"
+    example: "sample_jobQueue:waitingList -> Hash"
