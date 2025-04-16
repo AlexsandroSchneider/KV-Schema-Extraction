@@ -242,7 +242,7 @@ def parse_key_values(r_db):
     return parsed_keys
 ############################################################################################
 def main():
-    db = 3 ## Redis DB: default 0
+    db = 0 ## Redis DB: default 0
     F_THRESHOLD = 75 ## Minimum score to stablish relationship and detect "ID" in attribute
 
     with redis_connection() as conn:
@@ -266,7 +266,7 @@ def main():
             print(statement)
 
         ## Export SQL to file
-        with open("schema.sql", "w") as f:
+        with open("output_schema.sql", "w") as f:
             f.write("\n\n".join(sql_schema))
 ############################################################################################
 if __name__ == "__main__":
