@@ -138,40 +138,6 @@ def generate_relational_model(objects: list[Entity_Object], threshold = int):
 
     return tables
 
-
-def generate_yaml_model(tables: defaultdict[str, Table]):
-    model = {}
-
-    for table_name, table in tables.items():
-        table_dict = {}
-
-        ## Composite PK
-        if isinstance(table.primary_key, tuple):
-            table_dict['primary_key'] = f"{table.primary_key[0], table.primary_key[1]}"
-        else: ## Simple PK
-            table_dict['primary_key'] = table.primary_key
-
-        columns_dict = {}
-        for column_name, column in table.columns.items():
-            col_dict = {
-                'type': column.data_type,
-                'nullable': column.nullable
-            }
-
-            ## Checks if column is FK
-            for (col, ref_tab, ref_col) in table.foreign_keys:
-                if col == column_name:
-                    col_dict['foreign_key'] = {
-                        'references': f"{ref_tab}({ref_col})"
-                    }
-
-            columns_dict[column_name] = col_dict
-
-        table_dict['columns'] = columns_dict
-        model[table_name] = table_dict
-
-    return yaml.dump(model, allow_unicode=True, sort_keys=False)
-
 def generate_sql_schema(tables: defaultdict[str, Table]):
     sql_statements = []
     for table_name, table in tables.items():

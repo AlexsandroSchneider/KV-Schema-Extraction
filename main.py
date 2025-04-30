@@ -238,11 +238,11 @@ def parse_key_values(r_db):
                 k_V.components["property"] = "value"
             
             parsed_keys.append(k_V)
-
+    
     return parsed_keys
 ############################################################################################
 def main():
-    db = 0 ## Redis DB: default 0
+    db = 12 ## Redis DB: default 0
     F_THRESHOLD = 75 ## Minimum score to stablish relationship and detect "ID" in attribute
 
     with redis_connection() as conn:
@@ -271,3 +271,7 @@ def main():
 ############################################################################################
 if __name__ == "__main__":
     main()
+
+## TODO
+# Verify UNIQUE constraint on 1:1 relationship foreign keys
+# Reorder SQL statements for valid references
