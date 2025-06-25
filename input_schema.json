@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "Passenger": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "flights": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "flight_id": {
+                                "type": "string"
+                            },
+                            "duration": {
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "flight_id"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "flights",
+                "name"
+            ]
+        }
+    }
+}

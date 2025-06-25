@@ -1,11 +1,5 @@
 # Database Connection
-redis[hiredis]>=5.0.8  # Fast Redis connections with hiredis parser
+redis[hiredis]>=5.0.8
 
-# Text Processing
-thefuzz>=0.22.1  # String matching/comparison
-
-# Configuration
-PyYAML>=6.0.2  # YAML parsing for pattern files
-
-# Development (optional)
-python-Levenshtein>=0.25.0  # Faster thefuzz
+# Progress Bar
+tqdm>=4.67.1
