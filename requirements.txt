@@ -1,5 +1,8 @@
-# Database Connection
+# Database connection
 redis[hiredis]>=5.0.8
 
-# Progress Bar
+# Progress bar
 tqdm>=4.67.1
+
+# Random data generator
+Faker>=37.4.0

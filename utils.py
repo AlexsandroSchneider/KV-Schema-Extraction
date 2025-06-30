@@ -37,7 +37,7 @@ def remove_empty_containers(obj):
 
 def write_json_file(filename, data):
     with open(filename, 'w') as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=2)
 
 def get_schema_hash(schema):
     json_str = json.dumps(schema, sort_keys=True, separators=(',', ':'))

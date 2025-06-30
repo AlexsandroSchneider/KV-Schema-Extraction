@@ -55,6 +55,8 @@ def _process_key_batch(keys, conn):
         non_string_values = pipe.execute()
         
         for (key, key_type), value in zip(non_string_keys, non_string_values):
+            if key_type == "ReJSON-RL": ## REJSON always returns a list with 1 value (document root)
+                value = value[0]
             results[key] = value
     
     return results
